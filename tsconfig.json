@@ -10,9 +10,10 @@
     "noEmit": true, //import시 확장자까지 작성가능 위의 옵션과 같이 사용해야함
     "noImplicitThis": false,
     "sourceMap": true,
-    "outDir": "dist",
-    "strict": true
+    "outDir": "dist"
+    //"strict": true
   },
+  "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules" // node_modules 디렉토리를 제외
   ],
