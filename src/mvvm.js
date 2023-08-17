@@ -4,16 +4,6 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Binder_items;
-var type = function (target, targetType) {
-    if (typeof targetType === 'string') {
-        if (typeof target !== targetType)
-            throw "invalid type ".concat(target, " : ").concat(targetType);
-    }
-    else if (!(target instanceof targetType)) {
-        throw "invalid type ".concat(target, " : ").concat(targetType);
-    }
-    return target;
-};
 var ViewModel = /** @class */ (function () {
     function ViewModel(checker, data) {
         var _this = this;
@@ -53,9 +43,7 @@ var ViewModel = /** @class */ (function () {
     return ViewModel;
 }());
 var BinderItem = /** @class */ (function () {
-    function BinderItem(el, viewmodel, _0, _1) {
-        if (_0 === void 0) { _0 = type(el, HTMLElement); }
-        if (_1 === void 0) { _1 = type(viewmodel, 'string'); }
+    function BinderItem(el, viewmodel) {
         this.el = el;
         this.viewmodel = viewmodel;
         Object.freeze(this);
@@ -72,7 +60,7 @@ var Binder = /** @class */ (function () {
     Binder.prototype.render = function (viewmodel) {
         __classPrivateFieldGet(this, _Binder_items, "f").forEach(function (item) {
             if (item) {
-                var vm = type(viewmodel[item.viewmodel], ViewModel);
+                var vm = viewmodel[item.viewmodel];
                 var el_1 = item.el;
                 Object.entries(vm.styles).forEach(function (_b) {
                     var k = _b[0], v = _b[1];
@@ -93,24 +81,30 @@ var Binder = /** @class */ (function () {
             }
         });
     };
+    Binder.prototype.getItems = function () {
+        return __classPrivateFieldGet(this, _Binder_items, "f");
+    };
     return Binder;
 }());
 _Binder_items = new WeakMap();
+// Scanner는 HTML을 Scan 하여 Binder에게 알리는 역할 을 수행한다.
+// 그래서 Scanner에서 Binder를 만들고 반환한다.
 var Scanner = /** @class */ (function () {
     function Scanner() {
     }
     Scanner.prototype.scan = function (el) {
         var binder = new Binder();
-        this.checkItem(binder, el);
-        var stack = [el.firstElementChild];
+        this.checkItem(binder, el); //binder.add(BinderItem {el: section#target, viewmodel: 'wrapper'})
+        var stack = [el.firstElementChild]; // stack = [h2]
         var target;
         while ((target = stack.pop())) {
-            this.checkItem(binder, target);
+            this.checkItem(binder, target); //h2를 꺼내서 binder.add(BinderItem {el: h2, viewmodel: 'title'})
             if (target.firstElementChild)
-                stack.push(target.firstElementChild);
+                stack.push(target.firstElementChild); //자식 노드가 있는 경우 push
             if (target.nextElementSibling)
-                stack.push(target.nextElementSibling);
+                stack.push(target.nextElementSibling); //같은 노드 레벨의 다음 값이 있는 경우 push
         }
+        //console.log(binder.getItems());
         return binder;
     };
     Scanner.prototype.checkItem = function (binder, el) {
@@ -121,15 +115,14 @@ var Scanner = /** @class */ (function () {
     return Scanner;
 }());
 var scanner = new Scanner();
+//id = target인 section태그 전체를 가져온다.
 var binder = scanner.scan(document.querySelector('#target'));
 var getRandom = function () { return Math.floor(Math.random() * 150) + 100; };
 var viewmodel2 = ViewModel.get({
     isStop: false,
     changeContents: function () {
         this.wrapper.styles.background = "rgb(".concat(getRandom(), ",").concat(getRandom(), ",").concat(getRandom(), ")");
-        this.contents.properties.innerHTML = Math.random()
-            .toString(16)
-            .replace('.', '');
+        this.contents.properties.innerHTML = Math.random().toString(16).replace('.', '');
         binder.render(viewmodel2);
     },
     wrapper: ViewModel.get({
@@ -153,4 +146,5 @@ var f = function () {
     if (!viewmodel2.isStop)
         requestAnimationFrame(f);
 };
+//1초에 60회씩 f 실행
 requestAnimationFrame(f);
