@@ -4,6 +4,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Binder_items;
+//순수한 데이터 Object
 var ViewModel = /** @class */ (function () {
     function ViewModel(checker, data) {
         var _this = this;
@@ -39,6 +40,7 @@ var ViewModel = /** @class */ (function () {
     };
     var _a, _ViewModel_private;
     _a = ViewModel;
+    //Symbol : 객체의 프로퍼티 키로 사용
     _ViewModel_private = { value: Symbol() };
     return ViewModel;
 }());
@@ -140,6 +142,7 @@ var viewmodel2 = ViewModel.get({
         properties: { innerHTML: 'Contents' },
     }),
 });
+console.log(viewmodel2);
 var f = function () {
     viewmodel2.changeContents();
     binder.render(viewmodel2);

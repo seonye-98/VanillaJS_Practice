@@ -1,3 +1,4 @@
+//순수한 데이터 Object
 class ViewModel {
   //Symbol : 객체의 프로퍼티 키로 사용
   static #private = Symbol();
@@ -130,7 +131,7 @@ const viewmodel2: ViewModel = ViewModel.get({
     properties: { innerHTML: 'Contents' },
   }),
 });
-
+console.log(viewmodel2);
 const f = (): void => {
   viewmodel2.changeContents();
   binder.render(viewmodel2);
