@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Page App</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <!-- data-link를 사용하는 경우 페이지 새로고침을 피하기 위해 특정 리소스로
+      이동하기 위해 푸시 상태 메서드인 히스토리 API를 사용해야 한다. -->
+      <a href="/" class="nav__link" data-link>Dashboard</a>
+      <a href="/posts" class="nav__link" data-link>Posts</a>
+      <a href="/settings" class="nav__link" data-link>Settings</a>
+    </nav>
+    <!-- type = 'module' -> es6 문법을 사용하기 위함 -->
+    <script src="/static/js/index.js" type="module"></script>
+  </body>
+</html>

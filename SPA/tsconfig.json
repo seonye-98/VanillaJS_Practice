@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["es2016", "DOM"],
+    "target": "es2016",
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "noImplicitThis": false,
+    "sourceMap": true,
+    "rootDir": "frontend/src",
+    "outDir": "frontend/static/js",
+    "strict": true,
+    "skipLibCheck": true
+    // "allowImportingTsExtensions": true,
+    // "noEmit": true
+  },
+  "include": ["frontend/src/**/*.ts"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "files": true,
+    "esm": true
+  }
+}
