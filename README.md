@@ -17,6 +17,7 @@
    웹서버를 **5060, 5061이외의 포트**인 3001번 포트로 지정하니까 오류가 사라졌다.
 
 2. html script의 js파일이 제대로 불러오지 못함
+
    ![image](https://user-images.githubusercontent.com/82202370/261840547-17e4952b-4388-4968-a344-57d52a1ba1f7.png)
 
    express에서 static미들웨어를 사용하여 정적 directory를 제공한다.
