@@ -9,8 +9,7 @@
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "noImplicitThis": false,
     "sourceMap": true,
-    "rootDir": "frontend/src",
-    "outDir": "frontend/static/js",
+    "outDir": "frontend/static/dist",
     "strict": true,
     "skipLibCheck": true
   },

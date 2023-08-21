@@ -38,6 +38,9 @@
 - 모듈 import시 다음과 같이 정확하게 경로와 확장자명을 지정해주자.
   ` import Dashboard from "./views/Dashboard.js";`
 
+3. esm에서 \_\_dirname 사용하기
+   [참고 링크](https://jootc.com/p/202206123895)
+
 ---
 
 ### 의문점
