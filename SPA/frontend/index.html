@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Single Page App</title>
+    <link rel="stylesheet" href="/static/css/index.css" />
   </head>
   <body>
     <nav class="nav">
@@ -13,7 +14,8 @@
       <a href="/posts" class="nav__link" data-link>Posts</a>
       <a href="/settings" class="nav__link" data-link>Settings</a>
     </nav>
+    <div id="app"></div>
     <!-- type = 'module' -> es6 문법을 사용하기 위함 -->
-    <script src="/static/js/index.js" type="module"></script>
+    <script src="/static/dist/index.js" type="module"></script>
   </body>
 </html>
