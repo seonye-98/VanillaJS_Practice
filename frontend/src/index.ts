@@ -13,15 +13,12 @@ interface IMatch {
   result: string[] | null;
 }
 
-const pathToRegex = (path: string) =>
-  new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
+const pathToRegex = (path: string) => new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
 
 const getParams = (match: IMatch) => {
   if (match.result !== null) {
     const values = match.result.slice(1);
-    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
-      (result) => result[1]
-    );
+    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map((result) => result[1]);
     //다차원 배열 -> 객체
     return Object.fromEntries(
       keys.map((key, i) => {
@@ -41,12 +38,6 @@ const navigateTo = (url: string) => {
 //실제로 페이지를 렌더링하거나 표시하기 전에 일부 설정을 가져오기 위해 서버측에 비동기 요청을 만들고 싶을 수 있기 때문
 
 const router = async () => {
-  /*
-  console.log(pathToRegex('/posts/:id')); ///^\/posts\/(.+)$/
-  console.log('/posts/2'.match(pathToRegex('/posts/:id')));
-  console.log(pathToRegex('/posts/:id').exec('/posts/2'));
-  */
-
   const routes = [
     { path: '/', view: Dashboard },
     { path: '/posts', view: Posts },
@@ -54,16 +45,14 @@ const router = async () => {
     { path: '/settings', view: Settings },
   ];
 
-  const potentialMatches = routes.map((route) => {
+  const potentialMatches: IMatch[] = routes.map((route) => {
     return {
       route: route,
       result: location.pathname.match(pathToRegex(route.path)),
     };
   });
 
-  let match: IMatch | undefined = potentialMatches.find(
-    (potentialMatch) => potentialMatch.result !== null
-  );
+  let match: IMatch | undefined = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
 
   //매치하는 경로가 없는 경우, '/'경로에 설정된 화면 보여줌
   if (!match) {

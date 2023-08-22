@@ -31,11 +31,6 @@ const navigateTo = (url) => {
 //비동기로 작성되는 이유?
 //실제로 페이지를 렌더링하거나 표시하기 전에 일부 설정을 가져오기 위해 서버측에 비동기 요청을 만들고 싶을 수 있기 때문
 const router = () => __awaiter(void 0, void 0, void 0, function* () {
-    /*
-    console.log(pathToRegex('/posts/:id')); ///^\/posts\/(.+)$/
-    console.log('/posts/2'.match(pathToRegex('/posts/:id')));
-    console.log(pathToRegex('/posts/:id').exec('/posts/2'));
-    */
     const routes = [
         { path: '/', view: Dashboard },
         { path: '/posts', view: Posts },
