@@ -8,7 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export default class {
-    constructor() { }
+    constructor(params) {
+        this.params = params;
+    }
     setTitle(title) {
         document.title = title;
     }
