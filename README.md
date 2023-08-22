@@ -1,6 +1,7 @@
 ### 바닐라 JS로 SPA 만들기
 
 [1] https://youtu.be/6BozpmSjk-Y
+
 [2] https://www.youtube.com/watch?v=OstALBk-jTc
 
 - tsc-watch library
@@ -24,7 +25,10 @@
 
    ```js
    //server.js
-   app.use('/static', express.static(path.resolve(__dirname, 'frontend', 'static')));
+   app.use(
+     '/static',
+     express.static(path.resolve(__dirname, 'frontend', 'static'))
+   );
    ```
 
    - /static경로를 통해서 ./frontend/static 디렉토리에 포함된 파일을 로드할 수 있다.
@@ -37,6 +41,7 @@
    >   ` import Dashboard from "./views/Dashboard.js";`
 
 3. esm에서 \_\_dirname 사용하기
+
    [참고 링크](https://jootc.com/p/202206123895)
 
 ---
@@ -49,7 +54,9 @@
 - 해결
   dist 라는 폴더이름의 문제가 아니였다.. 원인은 esm문법과 commonJS문법을 혼합으로 사용하면서, 뭔가 충돌이 일어난듯한..? 자세한 내막은 아직 알지 못했지만, 뭔가 둘 사이의 호환이 잘 안되는 문제점을 많이 겪으면서 더더욱 통일해서 사용해야겠다고 생각했다!
   frontend에서는 esm문법을 사용하고 backend에서는 commonJS문법을 사용했었다.
+
   `해결 과정`
+
   1. 백엔드 ts로 바꿔서 모든 문법을 esm으로 통일
   2. package.json에 'type':'module' 추가
 
@@ -59,6 +66,7 @@
 - 해결
   TypeScript version 5부터 allowImportingTsExtensions, noEmit 옵션을 사용하면 .ts확장자를 import 구분에 사용할 수 있게 되었지만, 이 프로젝트에서는 html파일의 script로 js파일을 src로 넣어줘야 하므로, noEmit 옵션을 사용하게 되면 js로 컴파일된 파일을 src로 넣을 수 없다.
   따라서, 위의 옵션을 사용하지않고 `.js` 확장자를 사용하면 이미 js파일로 변환이 되어있기 때문에 에러없이 import 해올 수 있다.
+
   [참고 링크](https://pozafly.github.io/typescript/typescript-env/)
 
 ---

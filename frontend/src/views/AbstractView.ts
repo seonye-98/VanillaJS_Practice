@@ -1,5 +1,8 @@
 export default class {
-  constructor() {}
+  params: Record<string, string>;
+  constructor(params: Record<string, string>) {
+    this.params = params;
+  }
   setTitle(title: string) {
     document.title = title;
   }

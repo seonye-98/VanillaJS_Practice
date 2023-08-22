@@ -11,20 +11,17 @@ import AbstractView from './AbstractView.js';
 export default class extends AbstractView {
     constructor(params) {
         super(params);
-        this.setTitle('Dashboard');
+        this.postId = params.id;
+        this.setTitle('Viewing Post');
     }
     getHtml() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(this.params.id);
             return `
-        <h1>Welcome back, Dom</h1>
-        <p>
-            Fugiat voluptate et nisi Lorem cillum anim sit do eiusmod occaecat irure do. Reprehenderit anim fugiat sint exercitation consequat. Sit anim laborum sit amet Lorem adipisicing ullamco duis. Anim in do magna ea pariatur et.
-        </p>
-        <p>
-            <a href="/posts" data-link>View recent posts</a>.
-        </p>
+        <h1>Posts</h1>
+        <p>You are viewing post #${this.postId}</p>
     `;
         });
     }
 }
-//# sourceMappingURL=Dashboard.js.map
+//# sourceMappingURL=PostView.js.map

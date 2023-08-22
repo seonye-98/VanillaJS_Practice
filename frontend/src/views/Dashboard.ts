@@ -1,8 +1,8 @@
 import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-  constructor() {
-    super();
+  constructor(params: Record<string, string>) {
+    super(params);
     this.setTitle('Dashboard');
   }
   async getHtml(): Promise<string> {

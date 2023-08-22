@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import AbstractView from './AbstractView.js';
 export default class extends AbstractView {
-    constructor() {
-        super();
+    constructor(params) {
+        super(params);
         this.setTitle('Settings');
     }
     getHtml() {
